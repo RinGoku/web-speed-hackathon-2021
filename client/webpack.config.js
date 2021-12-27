@@ -20,18 +20,16 @@ const config = {
     },
     static: [PUBLIC_PATH, UPLOAD_PATH],
   },
-  devtool: 'inline-source-map',
   entry: {
     main: [
       'core-js',
       'regenerator-runtime/runtime',
-      'jquery-binarytransport',
       path.resolve(SRC_PATH, './index.css'),
       path.resolve(SRC_PATH, './buildinfo.js'),
       path.resolve(SRC_PATH, './index.jsx'),
     ],
   },
-  mode: 'none',
+  mode: process.env.WEBPACK_ENV,
   module: {
     rules: [
       {
@@ -55,10 +53,7 @@ const config = {
   },
   plugins: [
     new webpack.ProvidePlugin({
-      $: 'jquery',
-      AudioContext: ['standardized-audio-context', 'AudioContext'],
       Buffer: ['buffer', 'Buffer'],
-      'window.jQuery': 'jquery',
     }),
     new webpack.EnvironmentPlugin({
       BUILD_DATE: new Date().toISOString(),
@@ -81,6 +76,7 @@ const config = {
       path: false,
     },
   },
+  ...(process.env.WEBPACK_ENV === 'development' ? { devtool: 'inline-source-map' } : {}),
 };
 
 module.exports = config;

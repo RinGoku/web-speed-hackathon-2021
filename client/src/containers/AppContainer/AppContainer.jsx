@@ -1,17 +1,19 @@
 import React from 'react';
+import { Suspense } from 'react';
 import { Helmet } from 'react-helmet';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
 import { AppPage } from '../../components/application/AppPage';
 import { useFetch } from '../../hooks/use_fetch';
 import { fetchJSON } from '../../utils/fetchers';
-import { AuthModalContainer } from '../AuthModalContainer';
-import { NewPostModalContainer } from '../NewPostModalContainer';
-import { NotFoundContainer } from '../NotFoundContainer';
-import { PostContainer } from '../PostContainer';
-import { TermContainer } from '../TermContainer';
-import { TimelineContainer } from '../TimelineContainer';
-import { UserProfileContainer } from '../UserProfileContainer';
+
+const TimelineContainer = React.lazy(() => import('../TimelineContainer'));
+const UserProfileContainer = React.lazy(() => import('../UserProfileContainer'));
+const PostContainer = React.lazy(() => import('../TimelineContainer'));
+const TermContainer = React.lazy(() => import('../TermContainer'));
+const NotFoundContainer = React.lazy(() => import('../NotFoundContainer'));
+const NewPostModalContainer = React.lazy(() => import('../NewPostModalContainer'));
+const AuthModalContainer = React.lazy(() => import('../AuthModalContainer'));
 
 /** @type {React.VFC} */
 const AppContainer = () => {
@@ -40,7 +42,7 @@ const AppContainer = () => {
   }
 
   return (
-    <>
+    <Suspense fallback={<p>Loading...</p>}>
       <AppPage
         activeUser={activeUser}
         onRequestOpenAuthModal={handleRequestOpenAuthModal}
@@ -59,7 +61,7 @@ const AppContainer = () => {
         <AuthModalContainer onRequestCloseModal={handleRequestCloseModal} onUpdateActiveUser={setActiveUser} />
       ) : null}
       {modalType === 'post' ? <NewPostModalContainer onRequestCloseModal={handleRequestCloseModal} /> : null}
-    </>
+    </Suspense>
   );
 };
 
