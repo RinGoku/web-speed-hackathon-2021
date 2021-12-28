@@ -4,11 +4,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
+const CopyPlugin = require('copy-webpack-plugin');
+const ImageminMozjpeg = require('imagemin-mozjpeg');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 const webpack = require('webpack');
 
 const SRC_PATH = path.resolve(__dirname, './src');
 const PUBLIC_PATH = path.resolve(__dirname, '../public');
+const PUBLIC_PREV_PATH = path.resolve(__dirname, '../public_prev');
+
 const UPLOAD_PATH = path.resolve(__dirname, '../upload');
 const DIST_PATH = path.resolve(__dirname, '../dist');
 
@@ -71,6 +76,40 @@ const config = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(SRC_PATH, './index.html'),
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: `${PUBLIC_PREV_PATH}/images`,
+          to: `${PUBLIC_PATH}/images/[name][ext]`,
+        },
+        {
+          from: `${PUBLIC_PREV_PATH}/images`,
+          to: `${PUBLIC_PATH}/images/profiles/[name][ext]`,
+        },
+        {
+          from: `${PUBLIC_PREV_PATH}/movies`,
+          to: `${PUBLIC_PATH}/movies/[name][ext]`,
+        },
+      ],
+    }),
+    new ImageminPlugin({
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      plugins: [
+        ImageminMozjpeg({
+          quality: 85,
+          progressive: true,
+        }),
+      ],
+      pngquant: {
+        quality: '70-85',
+      },
+      gifsicle: {
+        interlaced: false,
+        optimizationLevel: 10,
+        colors: 256,
+      },
+      svgo: {},
     }),
   ],
   resolve: {
