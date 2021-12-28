@@ -4,6 +4,7 @@ import session from 'express-session';
 
 import { apiRouter } from './routes/api';
 import { staticRouter } from './routes/static';
+const compression = require('compression');
 
 const app = Express();
 
@@ -17,6 +18,7 @@ app.use(
     secret: 'secret',
   }),
 );
+app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.raw({ limit: '10mb' }));
 
