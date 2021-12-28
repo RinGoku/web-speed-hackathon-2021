@@ -1082,7 +1082,7 @@
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.50.tgz#1e0caa9364d3fccd2931c3ed96fdbeaa5d4cca83"
   integrity sha512-C6N5s2ZFtuZRj54k2/zyRhNDjJwwcViAM3Nbm8zjBpbqAdZ00mr0CFxvSKeO8Y/e03WVFLpQMdHYVfUd6SB+Hw==
 
-"@types/express-serve-static-core@*", "@types/express-serve-static-core@^4.17.18":
+"@types/express-serve-static-core@*", "@types/express-serve-static-core@^4.17.18", "@types/express-serve-static-core@^4.17.27":
   version "4.17.27"
   resolved "https://registry.yarnpkg.com/@types/express-serve-static-core/-/express-serve-static-core-4.17.27.tgz#7a776191e47295d2a05962ecbb3a4ce97e38b401"
   integrity sha512-e/sVallzUTPdyOTiqi8O8pMdBBphscvI6E4JYaKlja4Lm+zh7UFSSdW5VMkRbhDtmrONqOUHOXRguPsDckzxNA==
@@ -2906,6 +2906,13 @@ express-session@1.17.2:
     parseurl "~1.3.3"
     safe-buffer "5.2.1"
     uid-safe "~2.1.5"
+
+express-static-gzip@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/express-static-gzip/-/express-static-gzip-2.1.1.tgz#ee3a0eca3f10348bcd214095fbb46f8d0f8cb471"
+  integrity sha512-J+xSzdr5lj1cIuZey0ac6nUv22VE7GrdwTERqE8DsrqSXLm1zjeYWTVbK37t8exGwobxBXeWU2bM7eSMjBR4YA==
+  dependencies:
+    serve-static "^1.14.1"
 
 express@4.17.1:
   version "4.17.1"
@@ -6349,7 +6356,7 @@ serve-static@1.14.1:
     parseurl "~1.3.3"
     send "0.17.1"
 
-serve-static@1.14.2:
+serve-static@1.14.2, serve-static@^1.14.1:
   version "1.14.2"
   resolved "https://registry.yarnpkg.com/serve-static/-/serve-static-1.14.2.tgz#722d6294b1d62626d41b43a013ece4598d292bfa"
   integrity sha512-+TMNA9AFxUEGuC0z2mevogSnn9MXKb4fa7ngeRMJaaGv8vTwnIEkKi+QGvPt33HSnf8pRS+WGM0EbMtCJLKMBQ==

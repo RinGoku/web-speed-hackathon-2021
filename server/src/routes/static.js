@@ -1,6 +1,7 @@
 import history from 'connect-history-api-fallback';
 import Router from 'express-promise-router';
 import serveStatic from 'serve-static';
+const expressStaticGzip = require('express-static-gzip');
 
 import { CLIENT_DIST_PATH, PUBLIC_PATH, UPLOAD_PATH } from '../paths';
 
@@ -17,14 +18,14 @@ router.use(
 );
 
 router.use(
-  serveStatic(PUBLIC_PATH, {
+  expressStaticGzip(PUBLIC_PATH, {
     etag: false,
     lastModified: false,
   }),
 );
 
 router.use(
-  serveStatic(CLIENT_DIST_PATH, {
+  expressStaticGzip(CLIENT_DIST_PATH, {
     etag: false,
     lastModified: false,
   }),
