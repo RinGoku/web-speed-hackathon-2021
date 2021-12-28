@@ -7,13 +7,13 @@ import { AppPage } from '../../components/application/AppPage';
 import { useFetch } from '../../hooks/use_fetch';
 import { fetchJSON } from '../../utils/fetchers';
 
-const TimelineContainer = React.lazy(() => import('../TimelineContainer'));
-const UserProfileContainer = React.lazy(() => import('../UserProfileContainer'));
-const PostContainer = React.lazy(() => import('../TimelineContainer'));
-const TermContainer = React.lazy(() => import('../TermContainer'));
-const NotFoundContainer = React.lazy(() => import('../NotFoundContainer'));
-const NewPostModalContainer = React.lazy(() => import('../NewPostModalContainer'));
-const AuthModalContainer = React.lazy(() => import('../AuthModalContainer'));
+const TimelineContainer = React.lazy(() => import('../TimelineContainer/TimelineContainer'));
+const UserProfileContainer = React.lazy(() => import('../UserProfileContainer/UserProfileContainer'));
+const PostContainer = React.lazy(() => import('../TimelineContainer/TimelineContainer'));
+const TermContainer = React.lazy(() => import('../TermContainer/TermContainer'));
+const NotFoundContainer = React.lazy(() => import('../NotFoundContainer/NotFoundContainer'));
+const NewPostModalContainer = React.lazy(() => import('../NewPostModalContainer/NewPostModalContainer'));
+const AuthModalContainer = React.lazy(() => import('../AuthModalContainer/AuthModalContainer'));
 
 /** @type {React.VFC} */
 const AppContainer = () => {

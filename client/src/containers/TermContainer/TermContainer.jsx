@@ -16,3 +16,4 @@ const TermContainer = () => {
 };
 
 export { TermContainer };
+export default TermContainer;
