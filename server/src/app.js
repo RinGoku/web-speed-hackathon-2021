@@ -22,7 +22,6 @@ app.use(bodyParser.raw({ limit: '10mb' }));
 
 app.use((_req, res, next) => {
   res.header({
-    'Content-Encoding': 'gzip',
     'Cache-Control': 'max-age=0, no-transform',
     Connection: 'close',
   });

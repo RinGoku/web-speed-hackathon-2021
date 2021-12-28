@@ -18,7 +18,7 @@ router.use(
 );
 
 router.use(
-  serveStaticGzip(PUBLIC_PATH, {
+  serveStatic(PUBLIC_PATH, {
     etag: false,
     lastModified: false,
   }),
@@ -28,6 +28,14 @@ router.use(
   serveStaticGzip(CLIENT_DIST_PATH, {
     etag: false,
     lastModified: false,
+    enableBrotli: true,
+    customCompressions: [
+      {
+        encodingName: 'deflate',
+        fileExtension: 'zz',
+      },
+    ],
+    orderPreference: ['br'],
   }),
 );
 
