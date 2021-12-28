@@ -2,7 +2,6 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 
@@ -52,7 +51,7 @@ const config = {
     ],
   },
   output: {
-    filename: 'scripts/[name].js',
+    filename: 'scripts/[name].[hash].js',
     path: DIST_PATH,
   },
   plugins: [
@@ -70,7 +69,7 @@ const config = {
       filename: 'styles/[name].css',
     }),
     new HtmlWebpackPlugin({
-      inject: false,
+      filename: 'index.html',
       template: path.resolve(SRC_PATH, './index.html'),
     }),
   ],

@@ -23,11 +23,8 @@ async function fetchJSON(url) {
   const result = await fetch(url, {
     responseType: 'json',
     method: 'GET',
-  });
-  if (!result.ok) {
-    throw new Error('Error!');
-  }
-  const data = result.json();
+  }).catch(null);
+  const data = await result?.json();
   return data;
 }
 
