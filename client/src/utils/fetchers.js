@@ -8,6 +8,9 @@ async function fetchBinary(url) {
   const result = await fetch(url, {
     method: 'GET',
   });
+  if (!result.ok) {
+    throw new Error('Error!');
+  }
   return await result.arrayBuffer();
 }
 
@@ -21,6 +24,9 @@ async function fetchJSON(url) {
     responseType: 'json',
     method: 'GET',
   });
+  if (!result.ok) {
+    throw new Error('Error!');
+  }
   const data = result.json();
   return data;
 }
@@ -39,6 +45,9 @@ async function sendFile(url, file) {
     },
     method: 'POST',
   });
+  if (!result.ok) {
+    throw new Error('Error!');
+  }
   return await result.json();
 }
 
@@ -60,8 +69,10 @@ async function sendJSON(url, data) {
       'Content-Type': 'application/json',
     },
     method: 'POST',
-    url,
   });
+  if (!result.ok) {
+    throw new Error('Error!');
+  }
   return result.json();
 }
 

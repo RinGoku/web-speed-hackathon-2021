@@ -25,6 +25,9 @@ const AppContainer = () => {
   const [activeUser, setActiveUser] = React.useState(null);
   const { data, isLoading } = useFetch('/api/v1/me', fetchJSON);
   React.useEffect(() => {
+    if (data?.message === 'Unauthorized') {
+      return;
+    }
     setActiveUser(data);
   }, [data]);
 
