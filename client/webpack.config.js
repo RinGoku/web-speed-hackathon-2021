@@ -2,6 +2,10 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
+
 const webpack = require('webpack');
 
 const SRC_PATH = path.resolve(__dirname, './src');
@@ -61,6 +65,7 @@ const config = {
       COMMIT_HASH: process.env.SOURCE_VERSION || '',
       NODE_ENV: 'development',
     }),
+    new RemoveEmptyScriptsPlugin(),
     new MiniCssExtractPlugin({
       filename: 'styles/[name].css',
     }),
@@ -75,6 +80,9 @@ const config = {
       fs: false,
       path: false,
     },
+  },
+  optimization: {
+    minimizer: [new OptimizeCSSAssetsPlugin({})],
   },
   ...(process.env.WEBPACK_ENV === 'development' ? { devtool: 'inline-source-map' } : {}),
 };
