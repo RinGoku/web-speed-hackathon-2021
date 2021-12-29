@@ -7,7 +7,7 @@ import { staticRouter } from './routes/static';
 const compression = require('compression');
 
 const app = Express();
-app.use(compression());
+app.use(compression({ threshold: 0 }));
 
 app.set('trust proxy', true);
 
