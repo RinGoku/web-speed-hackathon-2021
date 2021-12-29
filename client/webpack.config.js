@@ -78,22 +78,22 @@ const config = {
       template: path.resolve(SRC_PATH, './index.html'),
       scriptLoading: 'defer',
     }),
-    new CopyPlugin({
-      patterns: [
-        {
-          from: `${PUBLIC_PREV_PATH}/images`,
-          to: `${PUBLIC_PATH}/images/[name][ext]`,
-        },
-        {
-          from: `${PUBLIC_PREV_PATH}/images`,
-          to: `${PUBLIC_PATH}/images/profiles/[name][ext]`,
-        },
-        {
-          from: `${PUBLIC_PREV_PATH}/movies`,
-          to: `${PUBLIC_PATH}/movies/[name][ext]`,
-        },
-      ],
-    }),
+    // new CopyPlugin({
+    //   patterns: [
+    //     {
+    //       from: `${PUBLIC_PREV_PATH}/images`,
+    //       to: `${PUBLIC_PATH}/images/[name][ext]`,
+    //     },
+    //     {
+    //       from: `${PUBLIC_PREV_PATH}/images`,
+    //       to: `${PUBLIC_PATH}/images/profiles/[name][ext]`,
+    //     },
+    //     {
+    //       from: `${PUBLIC_PREV_PATH}/movies`,
+    //       to: `${PUBLIC_PATH}/movies/[name][ext]`,
+    //     },
+    //   ],
+    // }),
     // new ImageminPlugin({
     //   test: /\.(jpe?g|png|gif|svg)$/i,
     //   plugins: [
