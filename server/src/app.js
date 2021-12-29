@@ -8,8 +8,8 @@ const compression = require('compression');
 
 const app = Express();
 app.use(compression({ threshold: 0 }));
-app.use(express.static(__dirname + '/public'));
-app.use(express.static(__dirname + '/dist'));
+app.use(Express.static(__dirname + '/public'));
+app.use(Express.static(__dirname + '/dist'));
 
 app.set('trust proxy', true);
 
