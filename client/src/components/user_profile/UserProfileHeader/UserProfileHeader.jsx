@@ -46,7 +46,7 @@ const UserProfileHeader = ({ user }) => {
           </span>
           <span>
             <time dateTime={dayjs(user.createdAt).toISOString()}>
-              {dayjs(user.createdAt).locale('ja').format('YYYY年MM月DD日')}
+              {dayjs(user.createdAt).locale('ja').format('YYYY年M月D日')}
             </time>
             からサービスを利用しています
           </span>

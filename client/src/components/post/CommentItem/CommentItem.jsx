@@ -34,7 +34,7 @@ const CommentItem = ({ comment }) => {
           <p className="text-gray-800 text-sm leading-relaxed">{comment.text}</p>
           <p className="text-gray-500 text-xs">
             <time dateTime={dayjs(comment.createdAt).toISOString()}>
-              {dayjs(comment.createdAt).locale('ja').format('YYYY年MM月DD日')}
+              {dayjs(comment.createdAt).locale('ja').format('YYYY年M月D日')}
             </time>
           </p>
         </div>
