@@ -7,6 +7,7 @@ const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 const CopyPlugin = require('copy-webpack-plugin');
 const ImageminMozjpeg = require('imagemin-mozjpeg');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
+const TerserPlugin = require('terser-webpack-plugin');
 
 const webpack = require('webpack');
 
@@ -121,7 +122,7 @@ const config = {
     },
   },
   optimization: {
-    minimizer: [new OptimizeCSSAssetsPlugin({})],
+    minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin({})],
   },
   ...(process.env.WEBPACK_ENV === 'development' ? { devtool: 'inline-source-map' } : {}),
 };
