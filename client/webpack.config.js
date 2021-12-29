@@ -57,7 +57,7 @@ const config = {
     ],
   },
   output: {
-    filename: 'scripts/[name].[chunkhash].js',
+    filename: 'scripts/[name].js',
     path: DIST_PATH,
   },
   plugins: [

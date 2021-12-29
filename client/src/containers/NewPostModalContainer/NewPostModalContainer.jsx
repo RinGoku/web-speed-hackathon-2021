@@ -45,6 +45,7 @@ const NewPostModalContainer = ({ onRequestCloseModal }) => {
       try {
         setIsLoading(true);
         const post = await sendNewPost(params);
+        debugger;
         onRequestCloseModal();
         navigate(`/posts/${post.id}`);
       } catch (_err) {

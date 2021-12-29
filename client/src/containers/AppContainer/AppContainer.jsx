@@ -9,7 +9,7 @@ import { fetchJSON } from '../../utils/fetchers';
 
 const TimelineContainer = React.lazy(() => import('../TimelineContainer/TimelineContainer'));
 const UserProfileContainer = React.lazy(() => import('../UserProfileContainer/UserProfileContainer'));
-const PostContainer = React.lazy(() => import('../TimelineContainer/TimelineContainer'));
+const PostContainer = React.lazy(() => import('../PostContainer/PostContainer'));
 const TermContainer = React.lazy(() => import('../TermContainer/TermContainer'));
 const NotFoundContainer = React.lazy(() => import('../NotFoundContainer/NotFoundContainer'));
 const NewPostModalContainer = React.lazy(() => import('../NewPostModalContainer/NewPostModalContainer'));
@@ -52,10 +52,10 @@ const AppContainer = () => {
         onRequestOpenPostModal={handleRequestOpenPostModal}
       >
         <Routes>
-          <Route element={<TimelineContainer />} path="/" />
           <Route element={<UserProfileContainer />} path="/users/:username" />
           <Route element={<PostContainer />} path="/posts/:postId" />
           <Route element={<TermContainer />} path="/terms" />
+          <Route element={<TimelineContainer />} path="/" />
           <Route element={<NotFoundContainer />} path="*" />
         </Routes>
       </AppPage>
