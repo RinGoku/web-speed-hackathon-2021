@@ -76,6 +76,7 @@ const config = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(SRC_PATH, './index.html'),
+      scriptLoading: 'defer',
     }),
     new CopyPlugin({
       patterns: [
@@ -93,24 +94,24 @@ const config = {
         },
       ],
     }),
-    new ImageminPlugin({
-      test: /\.(jpe?g|png|gif|svg)$/i,
-      plugins: [
-        ImageminMozjpeg({
-          quality: 85,
-          progressive: true,
-        }),
-      ],
-      pngquant: {
-        quality: '70-85',
-      },
-      gifsicle: {
-        interlaced: false,
-        optimizationLevel: 10,
-        colors: 256,
-      },
-      svgo: {},
-    }),
+    // new ImageminPlugin({
+    //   test: /\.(jpe?g|png|gif|svg)$/i,
+    //   plugins: [
+    //     ImageminMozjpeg({
+    //       quality: 85,
+    //       progressive: true,
+    //     }),
+    //   ],
+    //   pngquant: {
+    //     quality: '70-85',
+    //   },
+    //   gifsicle: {
+    //     interlaced: false,
+    //     optimizationLevel: 10,
+    //     colors: 256,
+    //   },
+    //   svgo: {},
+    // }),
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
