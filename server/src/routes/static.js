@@ -19,14 +19,14 @@ router.use(
 );
 
 router.use(
-  serveStatic(PUBLIC_PATH, {
+  serveStaticGzip(PUBLIC_PATH, {
     etag: false,
     lastModified: false,
   }),
 );
 
 router.use(
-  serveStatic(CLIENT_DIST_PATH, {
+  serveStaticGzip(CLIENT_DIST_PATH, {
     etag: false,
     lastModified: false,
   }),

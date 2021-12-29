@@ -8,6 +8,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const ImageminMozjpeg = require('imagemin-mozjpeg');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const TerserPlugin = require('terser-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 const webpack = require('webpack');
 
@@ -73,6 +74,12 @@ const config = {
     new RemoveEmptyScriptsPlugin(),
     new MiniCssExtractPlugin({
       filename: 'styles/[name].css',
+    }),
+    new CompressionPlugin({
+      test: /\.(css)|(js)$/,
+      compressionOptions: {
+        level: 9,
+      },
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
