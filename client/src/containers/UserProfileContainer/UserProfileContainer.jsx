@@ -14,7 +14,7 @@ const UserProfileContainer = () => {
   const { username } = useParams();
 
   const { data: user, isLoading: isLoadingUser } = useFetch(`/api/v1/users/${username}`, fetchJSON);
-  const { data: posts, fetchMore } = useInfiniteFetch(`/api/v1/users/${username}/posts`, fetchJSON);
+  const { data: posts, fetchMore } = useInfiniteFetch(`/api/v1/users/${username}/posts`, data);
 
   if (isLoadingUser) {
     return (

@@ -17,7 +17,7 @@ const LIMIT = 10;
  * @param {(apiPath: string) => Promise<T[]>} fetcher
  * @returns {ReturnValues<T>}
  */
-export function useInfiniteFetch(apiPath, fetcher) {
+export function useInfiniteFetch(apiPath, data = []) {
   const internalRef = React.useRef({ isLoading: false, offset: 0 });
 
   const [result, setResult] = React.useState({
@@ -27,46 +27,16 @@ export function useInfiniteFetch(apiPath, fetcher) {
   });
 
   const fetchMore = React.useCallback(() => {
-    const { isLoading, offset } = internalRef.current;
-    if (isLoading) {
-      return;
-    }
-
+    const { offset } = internalRef.current;
     setResult((cur) => ({
       ...cur,
-      isLoading: true,
+      data: [...cur.data, ...(data?.slice(offset, offset + LIMIT) ?? [])],
+      isLoading: false,
     }));
     internalRef.current = {
-      isLoading: true,
-      offset,
+      offset: offset + LIMIT,
     };
-
-    const promise = fetcher(apiPath);
-
-    promise.then((allData) => {
-      setResult((cur) => ({
-        ...cur,
-        data: [...cur.data, ...allData.slice(offset, offset + LIMIT)],
-        isLoading: false,
-      }));
-      internalRef.current = {
-        isLoading: false,
-        offset: offset + LIMIT,
-      };
-    });
-
-    promise.catch((error) => {
-      setResult((cur) => ({
-        ...cur,
-        error,
-        isLoading: false,
-      }));
-      internalRef.current = {
-        isLoading: false,
-        offset,
-      };
-    });
-  }, [apiPath, fetcher]);
+  }, [apiPath, data]);
 
   React.useEffect(() => {
     setResult(() => ({
@@ -80,8 +50,8 @@ export function useInfiniteFetch(apiPath, fetcher) {
     };
 
     fetchMore();
-  }, [fetchMore]);
-
+  }, [apiPath, data]);
+  console.log(result);
   return {
     ...result,
     fetchMore,

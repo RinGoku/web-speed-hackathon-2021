@@ -15,7 +15,7 @@ const PostContainer = () => {
 
   const { data: post, isLoading: isLoadingPost } = useFetch(`/api/v1/posts/${postId}`, fetchJSON);
 
-  const { data: comments, fetchMore } = useInfiniteFetch(`/api/v1/posts/${postId}/comments`, fetchJSON);
+  const { data: comments, fetchMore } = useInfiniteFetch(`/api/v1/posts/${postId}/comments`, post);
 
   if (isLoadingPost) {
     return (
