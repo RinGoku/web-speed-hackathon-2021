@@ -12,7 +12,7 @@ const webpack = require('webpack');
 
 const SRC_PATH = path.resolve(__dirname, './src');
 const PUBLIC_PATH = path.resolve(__dirname, '../public');
-const PUBLIC_PREV_PATH = path.resolve(__dirname, '../public_prev');
+// const PUBLIC_PREV_PATH = path.resolve(__dirname, '../public_prev');
 
 const UPLOAD_PATH = path.resolve(__dirname, '../upload');
 const DIST_PATH = path.resolve(__dirname, '../dist');
