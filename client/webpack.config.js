@@ -85,7 +85,6 @@ const config = {
       filename: 'index.html',
       template: path.resolve(SRC_PATH, './index.html'),
       scriptLoading: 'defer',
-      inject: 'body',
     }),
     // new CopyPlugin({
     //   patterns: [
