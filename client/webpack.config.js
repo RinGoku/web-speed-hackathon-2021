@@ -95,7 +95,7 @@ const config = {
       minRatio: 0.8,
     }),
     new HtmlWebpackPlugin({
-      inject: true,
+      inject: false,
       filename: 'index.html',
       template: path.resolve(SRC_PATH, './index.html'),
     }),
