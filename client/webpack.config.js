@@ -9,6 +9,7 @@ const ImageminMozjpeg = require('imagemin-mozjpeg');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const zlib = require('zlib');
 
 const webpack = require('webpack');
 
@@ -76,15 +77,27 @@ const config = {
       filename: 'styles/[name].css',
     }),
     new CompressionPlugin({
-      test: /\.(css)|(js)$/,
+      filename: '[path][base].gz',
+      algorithm: 'gzip',
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8,
+    }),
+    new CompressionPlugin({
+      filename: '[path][base].br',
+      algorithm: 'brotliCompress',
+      test: /\.(js|css|html|svg)$/,
       compressionOptions: {
-        level: 9,
+        params: {
+          [zlib.constants.BROTLI_PARAM_QUALITY]: 11,
+        },
       },
+      minRatio: 0.8,
     }),
     new HtmlWebpackPlugin({
+      inject: true,
       filename: 'index.html',
       template: path.resolve(SRC_PATH, './index.html'),
-      scriptLoading: 'defer',
     }),
     // new CopyPlugin({
     //   patterns: [
