@@ -6,7 +6,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 const CopyPlugin = require('copy-webpack-plugin');
 const ImageminMozjpeg = require('imagemin-mozjpeg');
-const ImageminPlugin = require('imagemin-webpack-plugin').default;
+const ImageminWebpWebpackPlugin = require('imagemin-webpack-plugin').default;
 const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const zlib = require('zlib');
@@ -98,6 +98,24 @@ const config = {
       inject: false,
       filename: 'index.html',
       template: path.resolve(SRC_PATH, './index.html'),
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: `${PUBLIC_PATH}/images/profiles/*.jpg`,
+          to: `${PUBLIC_PATH}/images/profiles/[name].webp`,
+        },
+      ],
+    }),
+    new ImageminWebpWebpackPlugin({
+      config: [
+        {
+          test: /\.(png|jpe?g)$/i, // 対象ファイル
+          options: {
+            quality: 75, // 画質
+          },
+        },
+      ],
     }),
     // new CopyPlugin({
     //   patterns: [
