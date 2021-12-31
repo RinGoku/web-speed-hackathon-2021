@@ -8,7 +8,7 @@ module.exports = {
     postcssImport(),
     tailwindcss(),
     postcssPresetEnv({
-      stage: false,
+      stage: 3,
     }),
     // cssnano({ preset: 'default' }),
   ],
