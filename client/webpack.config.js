@@ -99,24 +99,24 @@ const config = {
       filename: 'index.html',
       template: path.resolve(SRC_PATH, './index.html'),
     }),
-    new CopyPlugin({
-      patterns: [
-        {
-          from: `${PUBLIC_PATH}/images/profiles/*.jpg`,
-          to: `${PUBLIC_PATH}/images/profiles/[name].webp`,
-        },
-      ],
-    }),
-    new ImageminWebpWebpackPlugin({
-      config: [
-        {
-          test: /\.(png|jpe?g)$/i, // 対象ファイル
-          options: {
-            quality: 75, // 画質
-          },
-        },
-      ],
-    }),
+    // new CopyPlugin({
+    //   patterns: [
+    //     {
+    //       from: `${PUBLIC_PATH}/images/profiles/*.jpg`,
+    //       to: `${PUBLIC_PATH}/images/profiles/[name].webp`,
+    //     },
+    //   ],
+    // }),
+    // new ImageminWebpWebpackPlugin({
+    //   config: [
+    //     {
+    //       test: /\.(png|jpe?g)$/i, // 対象ファイル
+    //       options: {
+    //         quality: 75, // 画質
+    //       },
+    //     },
+    //   ],
+    // }),
     // new CopyPlugin({
     //   patterns: [
     //     {
